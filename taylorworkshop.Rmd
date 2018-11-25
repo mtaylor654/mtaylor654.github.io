@@ -1,0 +1,67 @@
+---
+title: "Thoughts on the Workshop"
+author: "Michael A. Taylor"
+date: '`11/21/2018`'
+output:
+  tufte::tufte_html: default
+  tufte::tufte_handout:
+    citation_package: natbib
+    latex_engine: lualatex
+  tufte::tufte_book:
+    citation_package: natbib
+    latex_engine: xelatex
+link-citations: yes
+bibliography: skeleton.bib
+subtitle: In the Style of Edward Tufte
+always_allow_html: yes
+---
+
+```{r options(tinytex.verbose = TRUE)}
+```
+
+```{r setup, include=FALSE}
+library(tufte)
+# invalidate cache when the tufte version changes
+knitr::opts_chunk$set(tidy = FALSE, cache.extra = packageVersion('tufte'))
+options(htmltools.dir.version = FALSE)
+```
+
+``` {r echo=FALSE,}
+  library(sparkline)
+  x = rnorm(20)
+  data(co2)
+```
+
+`r newthought("Edward Tufte")` is the kind of academic I long to be. His work on data visualization and design is groundbreaking, and his academic focus transitions seamlessly from typography to astrophysics to the problem of glare in operating rooms.  
+```{marginfigure}
+**Tufte Takeaway #1**: You should consider both the content and the credibility behind any data visualization.  Approach with an "open mind but not an empty head".
+
+```
+He provides brilliant insights from unexpected perspectives, which only after the fact, seem so obvious.  The morning started with data visualization.  I am intrigued with the concept of sparklines.  Sparklines are inline data graphics, such as line charts `r sparkline(x)`, bar charts `r sparkline(x,type = 'bar')`, and boxplots `r sparkline(x,type = 'box')`.  
+
+While the examples above are based on randomly generated data.  This one `r sparkline(co2)` uses time series data of atmospheric CO2 concentrations (ppm) measured monthly from 1950 - 1997 in Mauna Loa, HI. Did I mention these are `r newthought('interactive')` graphics? Go ahead and click on the graph and move your cursor over the curve to see the actual ppm readings. Gone are the days of segregating the text narrative from the graphical presentation! 
+```{marginfigure}
+**Tufte Takeaway #2**: "Get design out of the hands of coders and into the hands of thinkers"
+```
+
+`r newthought('After the morning session')` the workshop shifted into a more general discussion of best practices for communcating complex and important information effectively.  Among the many tips and tricks that Tufte presented, were a set of rules for making a better presentation.  The context of the discussion was geared towards corporate/business presentations, but can easily be applied to classroom presentations or committee meetings. The presentation should begin with the preparation of a written document that is between 2 - 6 pages, depending on the length of the meeting. ^[Tufte points out that this document is difficult to prepare because it requires a great deal of thought.  But it defines and explains the _content_, therfore justifying the importance of the presentation.  He also mentions that by providing critical sources for the content in the document you also add _credibility_ to your presentation.  Finally, Tufte warns not to provide the document prior to the meeting, as it is unlikely to be read in advance or to stay with the reader.] This is a text document that is written in paragraph form, avoiding any bulleting or listing.  The presentation starts with a study hall period, where participants are given the document and asked to read it.  People can read faster than an effective speaker can talk, so dedicating 3 minutes per page is enough time for the audience to gain the background information necessary for a productive presentation.  I use various contemplative pedagogical tools in my classes, and this seemed like an approach that would fit within that mold. I have piloted this presentation approach in class lectures since the workshop, and believe there has been more focused discussion.  I am planning to adopt the practice fully in my classes next semester.  Obviously, there is also a direct application of this method to committee and departmental meetings that I would be interested in exploring as well.
+
+`r newthought("The day ended")` with a discussion of data analysis when the truth matters. Throughout the day, Tufte pointed to crises in data analysis ranging from the problem of replicability in the behavioral sciences to a declining lack of faith in scientific results published in medical sciences. It is the latter that Tufte used to illustrate the urgency and importance of careful statistical analysis and communication. 
+```{marginfigure}
+**Tufte Takeaway #3**: _"The data may not contain the answer. And, if you torture the data long enough, it will tell you anything."_ - John W. Tukey
+
+```
+What responsibilities does a researcher have for the lives of others?  Tufte pointed out that as a society we take great care when it comes to "named lives". That is the lives of people who are directly and visibly impacted by our decisions and actions. For example, doctors take extreme measures to protect the lives of their patients. However, much less care is taken regarding "statistical lives". Those are the lives that are not directly observed or known, but are impacted by our decisions and actions.  For example, the people who will be negatively affected if a faulty medical study leads to a drug with dangerous side-effects being approved for public sale. Both named and statistical lives are real.  They both deserve the same type of consideration, and when research is dealing with results that has the potential to impact real lives it must be conducted at the highest possible standard.  While providing a sobering end to the workshop, I am determined to incorporate this point into the Research Methods classes that I teach.  To emphasize the responsibility that comes with all statistical analysis, especially for those who will be using it to analyze or lobby for policy change.
+
+```{marginfigure}
+_This webpage was created using RStudio with the addition of the tufte package for formatting and style elements to follow those used by Edward Tufte in his books, and the sparkline package for creation of the inline graphics._
+
+```
+
+
+> **I would like to thank Dean Peter Shoemaker for funding our attendance at the workshop.  It was a Thursday very well spent.**
+
+```{r bib, include=FALSE}
+# create a bib file for the R packages used in this document
+knitr::write_bib(c('base', 'rmarkdown'), file = 'skeleton.bib')
+```
